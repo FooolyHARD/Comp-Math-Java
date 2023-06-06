@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>govno</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/table_changer.js" type="text/javascript"></script>
+    <script src="js/submit_table.js" type="text/javascript"></script>
+    <script src="js/file_worker.js" type="text/javascript"></script>
+    <script src="js/graph.js" type="text/javascript"></script>
+    <script src="js/function_worker.js" type="text/javascript"></script>
+    <script src="js/config.js" type="text/javascript"></script>
+    <script src="js/util.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" />
+</head>
+<body onload="initializeTable()">
+<h1>Сенечка опять не спал</h1>
+<h1>Инпут</h1>
+<div class="container">
+    <form>
+        <table>
+            <thead>
+            <tr>
+                <th class="first_line">X</th>
+                <th class="first_line">Y</th>
+                <th class="first_line">й</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <input type="number" id="textX1" min="-1000" max="1000" name="x1" value="0">
+                    <input  type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x1_1" step="0.1"  onload="updateTextInput('textX1', this.value);" onchange="updateTextInput('textX1',this.value);" value="0"  required></td>
+                <td>
+                    <input type="number" id="textY1" min="-1000" max="1000" name="y1" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y1_1" step="0.1" onload="updateTextInput('textY1', this.value);" onchange="updateTextInput('textY1', this.value);"  required></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" id="textX2" min="-1000" max="1000" name="x2" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-10000" max="10000" name="x2_1" step="0.1" onload="updateTextInput('textX2', this.value);" onchange="updateTextInput('textX2', this.value);"  required></td>
+                <td>
+                    <input type="number" id="textY2" min="-1000" max="1000" name="y2" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y2_1" step="0.1" onload="updateTextInput('textY2', this.value);" onchange="updateTextInput('textY2', this.value);"  required></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" id="textX3" min="-1000" max="1000" name="x3" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x3_1" step="0.1" onload="updateTextInput('textX3', this.value);" onchange="updateTextInput('textX3', this.value);"  required></td>
+                <td>
+                    <input type="number" id="textY3" min="-1000" max="1000" name="y3" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y3_1" step="0.1" onload="updateTextInput('textY3', this.value);" onchange="updateTextInput('textY3', this.value);"  required></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" id="textX4" min="-1000" max="1000" name="x4" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x4_1" step="0.1" onload="updateTextInput('textX4', this.value);" onchange="updateTextInput('textX4', this.value);"  required></td>
+                <td>
+                    <input type="number" id="textY4" min="-1000" max="1000" name="y4" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y4_1" step="0.1" onload="updateTextInput('textY4', this.value);" onchange="updateTextInput('textY4', this.value);"  required></td>
+            </tr>
+            <tr id="row-5" style="display: none">
+                <td>
+                    <input type="number" id="textX5" min="-1000" max="1000" name="x5" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x5_1" step="0.1" onload="updateTextInput('textX5', this.value);" onchange="updateTextInput('textX5', this.value);"  required></td>
+                <td>
+                    <input type="number" id="textY5" min="-1000" max="1000" name="y5" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y5_1" step="0.1" onload="updateTextInput('textY5', this.value);" onchange="updateTextInput('textY5', this.value);"  required></td>
+            </tr>
+            <tr id="row-6" style="display: none">
+                <td>
+                    <input type="number" id="textX6" min="-1000" max="1000" name="x6" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x6_1" step="0.1" onload="updateTextInput('textX6', this.value);" onchange="updateTextInput('textX6', this.value);"  required></td>
+                <td>
+                    <input type="number" id="textY6" min="-1000" max="1000" name="y6" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y6_1" step="0.1" onload="updateTextInput('textY6', this.value);" onchange="updateTextInput('textY6', this.value);"  required></td>
+            </tr>
+            <tr id="row-7" style="display: none">
+                <td>
+                    <input type="number" id="textX7" min="-1000" max="1000" name="x7" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x7_1" step="0.1" onload="updateTextInput('textY7', this.value);" onchange="updateTextInput('textX7', this.value);"  required></td>
+                <td>
+                    <input type="number" id="textY7" min="-1000" max="1000" name="y7" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y7_1" step="0.1" onload="updateTextInput('textY7', this.value);" onchange="updateTextInput('textY7', this.value);"  required></td>
+            </tr>
+            <tr id="row-8" style="display: none">
+                <td>
+                    <input type="number" id="textX8" min="-1000" max="1000" name="x8" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x8_1" step="0.1" onload="updateTextInput('textX8', this.value);" onchange="updateTextInput('textX8', this.value);"  required></td>
+                <td>
+                    <input type="number" id="textY8" min="-1000" max="1000" name="y8" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y8_1" step="0.1" onload="updateTextInput('textY8', this.value);" onchange="updateTextInput('textY8', this.value);"  required></td>
+            </tr>
+            <tr id="row-9" style="display: none">
+                <td>
+                    <input type="number" id="textX9" min="-1000" max="1000" name="x9" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x9_1" step="0.1" onload="updateTextInput('textX9', this.value);" onchange="updateTextInput('textX9', this.value);" required></td>
+                <td>
+                    <input type="number" id="textY9" min="-1000" max="1000" name="y9" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y9_1" step="0.1" onload="updateTextInput('textY9', this.value);" onchange="updateTextInput('textY9', this.value);" required></td>
+            </tr>
+            <tr id="row-10" style="display: none">
+                <td>
+                    <input type="number" id="textX10" min="-1000" max="1000" name="x10" value="0">
+                    <input type="range" class="placeholderX" placeholder="Enter X" min="-1000" max="1000" name="x10_1" step="0.1" onload="updateTextInput('textY10', this.value);" onchange="updateTextInput('textX10', this.value);" required></td>
+                <td>
+                    <input type="number" id="textY10" min="-1000" max="1000" name="y10" value="0">
+                    <input type="range" class="placeholderY" placeholder="Enter Y" min="-1000" max="1000" name="y10_1" step="0.1" onload="updateTextInput('textY10', this.value);" onchange="updateTextInput('textY10', this.value);" required></td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="inc_btn" onclick="increment()" type="button" class="add-row"></button>
+                </td>
+                <td>
+                    <button id="dec_btn" onclick="decrement()" type="button" class="remove-row"></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="submit" type="button" onclick="submitForm(event)">По(на)ехали</button>
+                </td>
+                <td>
+                    <button type="button" class="load-button" onclick="loadFile()">Из файла</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <div class="error_box">
+            <h2 id="error_label" class="error_label"></h2>
+        </div>
+    </form>
+    <br>
+    <div class="result">
+        <h1>Результат:</h1>
+
+        <div class="plot_box">
+            <div id="jxgbox" class="jxgbox"></div>
+        </div>
+        <br>
+
+        <div>
+            <h2><span>Лучший вариант</span></h2>
+            <br>
+            <h2>
+                <span id="result"></span>
+                <br>
+
+                <span id="function"></span>
+                <br>
+
+                <span id="standard_deviation"></span>
+                <br>
+
+                <span id="phis"></span>
+                <br>
+
+                <span id="epsilons"></span>
+                <br>
+
+                <span id="pirson"></span>
+                <br>
+            </h2>
+        </div>
+
+        <div class="plot_box">
+            <div id="jxgbox_1" class="jxgbox"></div>
+        </div>
+        <br>
+
+        <div>
+            <h2><span>Функиця: </span></h2>
+            <br>
+            <h2>
+                <span id="result_1"></span>
+                <br>
+                
+                <span id="function_1"></span>
+                <br>
+
+                <span id="standard_deviation_1"></span>
+                <br>
+
+                <span id="phis_1"></span>
+                <br>
+                
+                <span id="epsilons_1"></span>
+                <br>
+                
+                <span id="pirson_1"></span>
+                <br>
+            </h2>
+        </div>
+
+        <div class="plot_box">
+            <div id="jxgbox_2" class="jxgbox"></div>
+        </div>
+        <br>
+
+        <div>
+            <h2><span>Функцыя: </span></h2>
+            <br>
+            <h2>
+                <span id="result_2"></span>
+                <br>
+                
+                <span id="function_2"></span>
+                <br>
+
+                <span id="standard_deviation_2"></span>
+                <br>
+
+                <span id="phis_2"></span>
+                <br>
+
+                <span id="epsilons_2"></span>
+                <br>
+
+                <span id="pirson_2"></span>
+                <br>
+            </h2>
+        </div>
+
+        <div class="plot_box">
+            <div id="jxgbox_3" class="jxgbox"></div>
+        </div>
+        <br>
+
+        <div>
+            <h2><span>Функцыя: </span></h2>
+            <br>
+            <h2>
+                <span id="result_3"></span>
+                <br>
+
+                <span id="function_3"></span>
+                <br>
+                
+                <span id="standard_deviation_3"></span>
+                <br>
+
+                <span id="phis_3"></span>
+                <br>
+
+                <span id="epsilons_3"></span>
+                <br>
+
+                <span id="pirson_3"></span>
+                <br>
+            </h2>
+        </div>
+
+        <div class="plot_box">
+            <div id="jxgbox_4" class="jxgbox"></div>
+        </div>
+        <br>
+
+        <div>
+            <h2><span>Функцыя: </span></h2>
+            <br>
+            <h2>
+                <span id="result_4"></span>
+                <br>
+
+                <span id="function_4"></span>
+                <br>
+
+                <span id="standard_deviation_4"></span>
+                <br>
+
+                <span id="phis_4"></span>
+                <br>
+
+                <span id="epsilons_4"></span>
+                <br>
+
+                <span id="pirson_4"></span>
+                <br>
+            </h2>
+        </div>
+
+        <div class="plot_box">
+            <div id="jxgbox_5" class="jxgbox"></div>
+        </div>
+        <br>
+
+        <div>
+            <h2><span>Функцыя: </span></h2>
+            <br>
+            <h2>
+                <span id="result_5"></span>
+                <br>
+                
+                <span id="function_5"></span>
+                <br>
+
+                <span id="standard_deviation_5"></span>
+                <br>
+
+                
+                <span id="phis_5"></span>
+                <br>
+
+                <span id="epsilons_5"></span>
+                <br>
+
+                <span id="pirson_5"></span>
+                <br>
+            </h2>
+        </div>
+    </div>
+</div>
+</body>
+</html>
